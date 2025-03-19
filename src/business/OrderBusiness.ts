@@ -2,6 +2,7 @@ import { Request } from "express"
 import Order from "../models/Order"
 import OrderData from "../data/OrderData"
 import Services from "../services/Authorization"
+import { OrderModel } from "../models/Types"
 
 
 
@@ -48,5 +49,21 @@ export default class OrderBusiness{
         )
 
         await this.orderData.createOrder(order)
+    }
+
+
+    getOrdersByClient = async(req:Request):Promise<OrderModel[]>=>{
+        const user = await new Services().authToken(req)
+
+        const orders = await this.orderData.getOrdersByClient(user.id)
+
+        if(orders.length === 0){
+            throw{
+                statusCode: 404,
+                error: new Error('Você ainda não fez nenhum pedido')
+            }
+        }
+
+        return orders
     }
 }

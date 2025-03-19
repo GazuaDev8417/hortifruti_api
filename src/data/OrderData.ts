@@ -32,4 +32,16 @@ export default class OrderData extends ConnectToDatabase{
             throw new Error(`Erro ao buscar pedido: ${e}`)
         }
     }
+
+
+    getOrdersByClient = async(clientId:string):Promise<OrderModel[]>=>{
+        try{
+
+            const orders = await ConnectToDatabase.con(this.ORDER_TABLE).where({ clientId })
+
+            return orders
+        }catch(e:any){
+            throw new Error(`Erro ao buscar pedidos: ${e}`)
+        }
+    }
 }

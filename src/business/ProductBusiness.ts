@@ -63,9 +63,9 @@ export default class ProductBusiness{
 
 
     getCartItems = async(req:Request):Promise<CartModel[]>=>{
-        await new Services().authToken(req)
+        const user = await new Services().authToken(req)
 
-        const cartItems = await this.productData.getCartItems()
+        const cartItems = await this.productData.getCartItems(user.id)
 
         if(cartItems.length === 0){
             throw{

@@ -56,10 +56,10 @@ export default class ProductData extends ConnectToDatabase{
     }
 
 
-    getCartItems = async():Promise<CartModel[]>=>{
+    getCartItems = async(client:string):Promise<CartModel[]>=>{
         try{
 
-            const cartItems = await ConnectToDatabase.con(this.CART_TABLE)
+            const cartItems = await ConnectToDatabase.con(this.CART_TABLE).where({ client })
 
             return cartItems
         }catch(e:any){

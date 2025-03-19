@@ -35,5 +35,6 @@ app.post('/insert_in_cart', productController.insertInCart)
 app.get('/client', userControllet.findById)
 app.get('/products', productController.getProducts)
 app.get('/cartItems', productController.getCartItems)
+app.get('/orders', orderController.getOrdersByClient)
 
 app.delete('/cartItem/:id', productController.removeCartItem)
