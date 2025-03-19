@@ -76,4 +76,11 @@ export default class ProductBusiness{
 
         return cartItems
     }
+
+
+    removeCartItems = async(req:Request):Promise<void>=>{
+        await new Services().authToken(req)
+
+        await this.productData.removeCartItem(req.params.id)
+    }
 }

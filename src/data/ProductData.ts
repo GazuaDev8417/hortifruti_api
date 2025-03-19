@@ -66,4 +66,15 @@ export default class ProductData extends ConnectToDatabase{
             throw new Error(`Erro ao buscar itens: ${e}`)
         }
     }
+
+
+    removeCartItem = async(id:string):Promise<void>=>{
+        try{
+
+            await ConnectToDatabase.con(this.CART_TABLE).del().where({ id })
+
+        }catch(e:any){
+            throw new Error(`Erro ao remover itens: ${e}`)
+        }
+    }
 }
