@@ -14,9 +14,9 @@ export default class ProductBusiness{
     ){}
 
     insertProduct = async(req:Request):Promise<void>=>{
-        const { product, price } = req.body
+        const { product, price, description, urlImage } = req.body
 
-        if(!product || !price){
+        if(!product || !price || !description || !urlImage){
             throw new Error('Preencha os campos')
         }
 
@@ -30,7 +30,7 @@ export default class ProductBusiness{
 
         const id = new Services().idGenerator()
 
-        const prod = new Product(id , product, price)
+        const prod = new Product(id , product, price, description, urlImage)
 
         await this.productData.insertProduct(prod)
     }

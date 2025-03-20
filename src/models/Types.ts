@@ -11,6 +11,8 @@ export interface ProductModel{
     id:string
     product:string
     price:string
+    escription:string,
+    urlImage:string
 }
 
 export interface OrderModel{

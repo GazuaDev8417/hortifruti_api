@@ -8,7 +8,9 @@ export default class Product extends ConnectToDatabase{
     constructor(
         private id:string,
         private product:string,
-        private price:string
+        private price:string,
+        private description:string,
+        private urlImage:string
     ){ super() }
 
     save = async()=>{
@@ -16,7 +18,9 @@ export default class Product extends ConnectToDatabase{
             await ConnectToDatabase.con(this.PRODUCT_TABLE).insert({
                 id: this.id,
                 product: this.product,
-                price: this.price
+                price: this.price,
+                description: this.description,
+                urlImage: this.urlImage
             })
         }catch(e){
             throw new Error(`Erro ao registrar produto: ${e}`)
