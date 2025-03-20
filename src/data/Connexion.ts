@@ -6,13 +6,8 @@ config()
 
 export default abstract class ConnectToDatabase{
     protected static con = knex({
-        client: 'mysql2',
-        connection: {
-            host: 'localhost',
-            user: 'root',
-            password: 'alfadb',
-            database: 'hortifruti'
-        }
+        client: 'pg',
+        connection: process.env.HORTIFRUTI_DB
     })
 
     public static testConnexion = async():Promise<void>=>{

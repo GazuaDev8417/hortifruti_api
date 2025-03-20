@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsc && node dist/index.js",
     "dev": "nodemon --transpile-only src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "migrations": "tsc && node dist/data/Migrations.js"
   },
   "keywords": [],
   "author": "",
