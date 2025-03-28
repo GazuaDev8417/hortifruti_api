@@ -16,9 +16,9 @@ export default class OrderBusiness{
     createOrder = async(req:Request):Promise<void>=>{
         const user = await new Services().authToken(req)
         
-        const { client, email, phone, address, product, quantity } = req.body
+        const { client, email, phone, address, product, price, quantity } = req.body
 
-        if(!client || !email || !phone || !address || !product || !quantity){
+        if(!client || !email || !phone || !address || !product || !price || !quantity){
             throw{
                 statusCode: 401,
                 error: new Error('Preencha todos os campos')
@@ -26,7 +26,7 @@ export default class OrderBusiness{
         }
 
         const existingOrder = await this.orderData.findOrder(
-            client, email, phone, address, product, quantity, user.id
+            client, email, phone, address, product, price, quantity, user.id
         )
         if(existingOrder){
             throw{
@@ -44,7 +44,9 @@ export default class OrderBusiness{
             phone,
             address,
             product,
+            price,
             quantity,
+            (Number(price) * Number(quantity)).toString() ,
             user.id
         )
 

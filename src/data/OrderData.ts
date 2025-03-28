@@ -19,12 +19,12 @@ export default class OrderData extends ConnectToDatabase{
 
 
     findOrder = async(
-        client:string, email:string, phone:string, address:string, product:string, quantity:string, clientId:string
+        client:string, email:string, phone:string, address:string, product:string, price:string, quantity:string, clientId:string
     ):Promise<OrderModel>=>{
         try{
 
             const [order] = await ConnectToDatabase.con(this.ORDER_TABLE).where({
-                client, email, phone, address, product, quantity, clientId
+                client, email, phone, address, product, price, quantity, clientId
             })
 
             return order

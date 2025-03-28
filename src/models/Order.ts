@@ -12,7 +12,9 @@ export default class Order extends ConnectToDatabase{
         private phone:string,
         private address:string,
         private product:string,
+        private price:string,
         private quantity:string,
+        private total:string,
         private clientId:string
     ){ super() }
 
@@ -25,7 +27,9 @@ export default class Order extends ConnectToDatabase{
                 phone: this.phone,
                 address: this.address,
                 product: this.product,
+                price: this.price,
                 quantity: this.quantity,
+                total: this.total,
                 clientId: this.clientId
             })
         }catch(e){
